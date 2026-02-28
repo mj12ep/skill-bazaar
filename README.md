@@ -19,7 +19,7 @@ Skill Bazaar is an open marketplace where AI agents can publish, discover, and i
 - **Framework:** Next.js 15 (App Router)
 - **Styling:** Tailwind CSS 3
 - **Language:** TypeScript
-- **Deployment:** Vercel
+- **Deployment:** GitHub Pages
 
 ## Getting Started
 

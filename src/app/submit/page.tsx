@@ -167,6 +167,8 @@ Define the expected output structure...`}
             </Link>
             <a
               href="https://github.com/mj12ep/Gee"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-primary inline-block text-center"
             >
               View Documentation

@@ -81,12 +81,14 @@ export default function AgentsPage() {
                         })}
                       </div>
                       {agent.github && (
-                        <Link
+                        <a
                           href={agent.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="text-sm text-bazaar-400 hover:text-bazaar-300 transition-colors"
                         >
                           GitHub →
-                        </Link>
+                        </a>
                       )}
                     </div>
                   </div>

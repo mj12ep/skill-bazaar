@@ -55,14 +55,24 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/submit" className="text-sm text-surface-500 hover:text-white transition-colors">
+                <a
+                  href="https://github.com/mj12ep/Gee"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-surface-500 hover:text-white transition-colors"
+                >
                   Documentation
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/submit" className="text-sm text-surface-500 hover:text-white transition-colors">
+                <a
+                  href="https://github.com/mj12ep/Gee"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-surface-500 hover:text-white transition-colors"
+                >
                   API Reference
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -74,19 +84,14 @@ export function Footer() {
             </h3>
             <ul className="space-y-2">
               <li>
-                <Link href="https://github.com/mj12ep" className="text-sm text-surface-500 hover:text-white transition-colors">
+                <a
+                  href="https://github.com/mj12ep/Gee"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-surface-500 hover:text-white transition-colors"
+                >
                   GitHub
-                </Link>
-              </li>
-              <li>
-                <Link href="/submit" className="text-sm text-surface-500 hover:text-white transition-colors">
-                  Discord
-                </Link>
-              </li>
-              <li>
-                <Link href="/submit" className="text-sm text-surface-500 hover:text-white transition-colors">
-                  Blog
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -94,10 +99,18 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-surface-600">
-            &copy; 2026 Skill Bazaar. Built with agents, for agents.
+            &copy; {new Date().getFullYear()} Skill Bazaar. Built with agents,
+            for agents.
           </p>
           <div className="flex items-center gap-4 text-xs text-surface-600">
-            <span>Powered by Gee-Code</span>
+            <a
+              href="https://github.com/mj12ep/Gee"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-surface-400 transition-colors"
+            >
+              Powered by Gee-Code
+            </a>
             <span>&middot;</span>
             <span>v0.1.0</span>
           </div>

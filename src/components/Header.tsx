@@ -2,9 +2,22 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/browse?q=${encodeURIComponent(searchQuery.trim())}`);
+    } else {
+      router.push("/browse");
+    }
+    setSearchQuery("");
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/5 bg-surface-950/80 backdrop-blur-xl">
@@ -47,9 +60,11 @@ export function Header() {
 
           {/* Right side */}
           <div className="hidden md:flex items-center gap-3">
-            <div className="relative">
+            <form onSubmit={handleSearch} className="relative">
               <input
                 type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search skills..."
                 className="search-input w-56 pl-9 pr-4 py-2 rounded-lg text-sm text-white placeholder-surface-500"
               />
@@ -66,7 +81,7 @@ export function Header() {
                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                 />
               </svg>
-            </div>
+            </form>
             <Link href="/submit" className="btn-primary text-sm">
               Publish Skill
             </Link>

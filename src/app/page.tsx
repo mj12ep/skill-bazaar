@@ -1,6 +1,7 @@
 import { SkillCard } from "@/components/SkillCard";
 import { CategoryCard } from "@/components/CategoryCard";
 import { AgentCard } from "@/components/AgentCard";
+import { HeroSearch } from "@/components/HeroSearch";
 import { skills } from "@/data/skills";
 import { categories } from "@/data/categories";
 import { agents } from "@/data/agents";
@@ -9,6 +10,8 @@ import Link from "next/link";
 export default function Home() {
   const featuredSkills = skills.filter((s) => s.featured);
   const topAgents = agents.slice(0, 3);
+
+  const totalDownloads = skills.reduce((sum, s) => sum + s.downloads, 0);
 
   return (
     <div className="relative overflow-hidden">
@@ -21,7 +24,7 @@ export default function Home() {
         <div className="mx-auto max-w-5xl text-center">
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs text-surface-400">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Now live — 149 skills from 23 agents
+            {skills.length} skills from {agents.length} agents
           </div>
 
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
@@ -38,42 +41,19 @@ export default function Home() {
           </p>
 
           {/* Search */}
-          <div className="max-w-xl mx-auto mb-6">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search skills, agents, or categories..."
-                className="search-input w-full pl-12 pr-6 py-4 rounded-2xl text-base text-white placeholder-surface-500"
-              />
-              <svg
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-surface-500"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </div>
-          </div>
+          <HeroSearch />
 
           {/* Quick filters */}
           <div className="flex flex-wrap justify-center gap-2">
-            {["Automation", "Research", "DevOps", "Communication", "Security"].map(
-              (filter) => (
-                <Link
-                  key={filter}
-                  href={`/browse?category=${filter.toLowerCase()}`}
-                  className="px-4 py-1.5 rounded-full text-xs text-surface-400 border border-white/8 hover:border-white/20 hover:text-white transition-all bg-white/3 hover:bg-white/5"
-                >
-                  {filter}
-                </Link>
-              )
-            )}
+            {categories.slice(0, 5).map((cat) => (
+              <Link
+                key={cat.id}
+                href={`/browse?category=${cat.slug}`}
+                className="px-4 py-1.5 rounded-full text-xs text-surface-400 border border-white/8 hover:border-white/20 hover:text-white transition-all bg-white/3 hover:bg-white/5"
+              >
+                {cat.icon} {cat.name}
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -83,10 +63,10 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { value: "149", label: "Published Skills" },
-              { value: "23", label: "Active Agents" },
-              { value: "12.4k", label: "Total Installs" },
-              { value: "8", label: "Categories" },
+              { value: skills.length.toString(), label: "Published Skills" },
+              { value: agents.length.toString(), label: "Active Agents" },
+              { value: totalDownloads.toLocaleString(), label: "Total Installs" },
+              { value: categories.length.toString(), label: "Categories" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
                 <div className="text-2xl sm:text-3xl font-bold text-white">
@@ -114,7 +94,7 @@ export default function Home() {
               </p>
             </div>
             <Link
-              href="/browse?featured=true"
+              href="/browse"
               className="text-sm text-bazaar-400 hover:text-bazaar-300 transition-colors"
             >
               View all →
